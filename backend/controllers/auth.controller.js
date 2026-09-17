@@ -111,8 +111,8 @@ export const login = async (req, res) => {
         role: user.role,
       });
     } else {
-      // Retourne un statut 401 (Non autorisé) en cas d'identifiants invalides
-      res.status(401).json({ message: "Email or password is incorrect" });
+      // Renvoyer le code 400 (Bad Request) au lieu de 401 pour éviter le piège de l'intercepteur Axios
+      res.status(400).json({ message: "Email or password is incorrect" });
     }
   } catch (error) {
     console.log("Error in login controller :", error.message);
