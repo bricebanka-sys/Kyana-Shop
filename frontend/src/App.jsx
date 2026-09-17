@@ -14,8 +14,10 @@ import CartPage from "./pages/CartPage";
 import { useCartStore } from "./stores/useCartStore";
 import PurchaseSuccessPage from "./pages/PurchaseSuccessPage";
 import PurchaseCancelPage from "./pages/PurchaseCancelPage";
+import Footer from "./components/Footer";
 
 function App() {
+
  
   const { user, checkAuth, checkingAuth} = useUserStore();
   const { getCartItems } = useCartStore();
@@ -46,6 +48,7 @@ function App() {
       {/* Contenu principal de l'application */}
       <div className="relative z-50 pt-20">
         <Navbar />
+        <main className="flex-1">
         <Routes>
           <Route path="/" element={user ? <HomePage /> : <Navigate to="/login" />} />
           <Route path="/signup" element={!user ? <SignUpPage /> : <Navigate to="/" />} />
@@ -67,6 +70,12 @@ function App() {
             element={user ? <PurchaseCancelPage /> : <Navigate to="/login" />}
           />
         </Routes>
+        </main>
+      </div>
+
+      {/* Pied de page : visible sur toutes les pages, toujours en bas */}
+      <div className="relative z-50">
+        <Footer />
       </div>
       <Toaster />
     </div>
